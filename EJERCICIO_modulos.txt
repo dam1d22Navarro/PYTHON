@@ -1,0 +1,104 @@
+Ejercicio3
+__init__.py
+import nuevoCampo
+__openerp__.py
+{
+    "name": "campo_nuevo",
+    "version": "1.0",
+    "depends": ["users",
+                "base"],
+    "author": "Juan Gomez",
+    "category": "Others",
+    "description":"Aniade a la tabla usuarios el campo edad",
+    "init_xml":[],
+    "update_xml":["campo_view.xml"],
+    "demo_xml": [],
+    "installable": True,
+    "active": False,
+    }
+nuevoCampo.py
+from openerp.osv import osv, fields
+
+class tab_usuarios(osv.osv):
+    _name="res.users"
+    _inherit="res.users"
+    _columns = {
+        "Edad": fields.integer("Edad", size=5),
+        }
+tab_usuarios()
+
+campo_view.xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+      
+        <data>
+               
+                <record model='ir.ui.view' id='edad_view_form'>
+                        <field name='name'>users.form</field>
+                        <field name='model'>res.users</field>
+                        <field name="inherit_id" ref="base.view_users_form"/>
+                        <field name='type'>form</field>
+                        <field name='arch' type='xml'>
+                                <field name="Nombre" position="after">
+                                        <field name="Edad"/>
+                                </field>
+                        </field>
+ 
+                </record>
+        </data>
+</openerp>
+ejercicio4
+__init__.py
+import cambioEtiqueta
+__openerp_.py
+{
+    "name": "Ejer4",
+    "version": "1.0",
+    "depends": ["base"],
+    "author": "Jose Lizarraga",
+    "category": "Others",
+    "description": """
+    Modulo de prueba para el curso de formacion.
+    """,
+    "init_xml": [],
+    'update_xml': ['etiqueta_view.xml'],
+    'demo_xml': [],
+    'installable': True,
+    'active': False,
+#    'certificate': 'certificate',
+}
+cambioEtiqueta.py
+from osv import osv, fields
+class a_campo(osv.osv):
+    _name="res.users"
+    _inherit="res.users"
+    _columns={
+        'Hola':fields.char('Hola',size=64,select=1)
+        }
+a_campo()
+etiqueta_view.xml
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="cambio" model="ir.ui.view">
+            <field name="name">users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"></field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="name" position="after">
+                        <field name="trade_name" placeholder="Hola" />
+                    </field>
+                    
+                 	<field name="name" position="replace">
+                	</field> 	
+                	<label name='company' popsition="replace">
+                	<label for="active" string="active"></label>
+                </label>
+                </data>
+            </field>
+          </record>
+    </data>
+</openerp>
+
