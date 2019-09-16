@@ -9,7 +9,7 @@ __openerp__.py
                 "base"],
     "author": "Juan Gomez",
     "category": "Others",
-    "description":"Aniade a la tabla usuarios el campo edad",
+    "description":"Añade a la tabla usuarios el campo edad",
     "init_xml":[],
     "update_xml":["campo_view.xml"],
     "demo_xml": [],
